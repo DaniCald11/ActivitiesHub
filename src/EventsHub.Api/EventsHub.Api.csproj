@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Application.csproj" />
-    <ProjectReference Include="..\Persistence\Persistence.csproj" />
+    <ProjectReference Include="..\EventsHub.Application\EventsHub.Application.csproj" />
+    <ProjectReference Include="..\EventsHub.Persistence\EventsHub.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

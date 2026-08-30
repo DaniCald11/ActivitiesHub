@@ -5,13 +5,13 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1D58FBF5-9C02-4C52-A33E-4529597F5D5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "src\API\API.csproj", "{5BAE93AE-CD31-47F2-94AD-15DE83AC703C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "src\EventsHub.Api\EventsHub.Api.csproj", "{5BAE93AE-CD31-47F2-94AD-15DE83AC703C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{D82F0192-0CC3-410D-99E4-C133E4BB7AF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\EventsHub.Domain\EventsHub.Domain.csproj", "{D82F0192-0CC3-410D-99E4-C133E4BB7AF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{BD167CA3-F36D-4044-A630-48B479AC309A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\EventsHub.Application\EventsHub.Application.csproj", "{BD167CA3-F36D-4044-A630-48B479AC309A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "src\Persistence\Persistence.csproj", "{72DB51B1-0608-4CC0-B765-24675156D232}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "src\EventsHub.Persistence\EventsHub.Persistence.csproj", "{72DB51B1-0608-4CC0-B765-24675156D232}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
