@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 
 function App() {
-  const [activities, setActivities] = useState([]);
+  const [activities, setActivities] = useState<Activity[]>([]);
 
   useEffect(() => {
     fetch('https://localhost:5001/api/v1/events')
@@ -10,14 +10,14 @@ function App() {
       .catch(error => console.error('Error fetching activities:', error));
 
       return () => {};
-      
+
   }, []);
 
   return (
     <div>
     <h3 style={{ color: 'red' }}> EventsHub </h3>
     <ul>
-      {activities.map((activity) => (
+      {activities.map((activity: Activity) => (
         <li key={activity.id}>{activity.title}</li>
       ))}
     </ul>
