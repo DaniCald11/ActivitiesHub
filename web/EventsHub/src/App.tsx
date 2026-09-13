@@ -1,4 +1,6 @@
-import {useEffect, useState} from 'react'
+import {Fragment, useEffect, useState} from 'react'
+import { ListItemText, Typography } from '@mui/material';
+import { List, ListItem } from '@mui/material';
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -14,14 +16,17 @@ function App() {
   }, []);
 
   return (
-    <div>
-    <h3 style={{ color: 'red' }}> EventsHub </h3>
-    <ul>
-      {activities.map((activity: Activity) => (
-        <li key={activity.id}>{activity.title}</li>
-      ))}
-    </ul>
-    </div>
+    <Fragment>
+        <Typography variant="h3"> EventsHub </Typography>
+        <List>
+          {activities.map((activity: Activity) => (
+            <ListItem key={activity.id}>
+              <ListItemText>{activity.title}</ListItemText>
+            </ListItem>
+          ))}
+        </List>
+      
+    </Fragment>
   )
 }
 
