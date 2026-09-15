@@ -1,14 +1,14 @@
 import {Fragment, useEffect, useState} from 'react'
 import { ListItemText, Typography } from '@mui/material';
 import { List, ListItem } from '@mui/material';
+import axios from 'axios';
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
 
   useEffect(() => {
-    fetch('https://localhost:5001/api/v1/events')
-      .then(response => response.json())
-      .then(data => setActivities(data))
+    axios.get<Activity[]>('https://localhost:5001/api/v1/events')
+      .then(response => setActivities(response.data))
       .catch(error => console.error('Error fetching activities:', error));
 
       return () => {};

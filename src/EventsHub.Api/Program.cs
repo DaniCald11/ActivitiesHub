@@ -9,7 +9,6 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection"));
 }); 
-
 builder.Services.AddCors();
 var app = builder.Build();
 
