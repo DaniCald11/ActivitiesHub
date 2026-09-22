@@ -7,18 +7,18 @@ using MediatR;
 
 namespace EventsHub.Api.Controllers;
 
-public class EventsController(IMediator mediator) : EventsHubBaseController
+public class EventsController() : EventsHubBaseController
 {
 
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<Activity>>> GetActivitiesAsync()
     {
-        return await mediator.Send(new GetEventList.Query());
+        return await Mediator.Send(new GetEventList.Query());
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Activity>> GetActivityDetailAsync(string id)
     {
-        return await mediator.Send(new GetEventDetails.Query { Id = id });
+        return await  Mediator.Send(new GetEventDetails.Query { Id = id });
     }
 }
