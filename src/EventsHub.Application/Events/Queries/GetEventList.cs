@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore;
 
 public class GetEventList
 {
-    public class Query : IRequest<List<Activity>>
+    public class Query : IRequest<IReadOnlyList<Activity>>
     {
     }
 
-    public class Handler(AppDbContext context) : IRequestHandler<Query, List<Activity>>
+    public class Handler(AppDbContext context) : IRequestHandler<Query, IReadOnlyList<Activity>>
     {
-        public async Task<List<Activity>> Handle(Query request, CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<Activity>> Handle(Query request, CancellationToken cancellationToken)
         {
             return await context.Activities.ToListAsync(cancellationToken);
         }
