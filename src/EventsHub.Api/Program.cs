@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using EventsHub.Persistence;
 using EventsHub.Application.Events.Queries;
+using EventsHub.Application.Core; 
+using EventsHub.Application.Events.Commands;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,7 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 
 builder.Services.AddCors();
 builder.Services.AddMediatR(opt => opt.RegisterServicesFromAssemblyContaining<GetEventList.Handler>());
-builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+builder.Services.AddAutoMapper(cfg => cfg.AddMaps(typeof(MappingProfiles).Assembly));
 
 var app = builder.Build();
 

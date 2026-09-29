@@ -45,5 +45,15 @@ public class EventsController : EventsHubBaseController
         await Mediator.Send(new EditEvent.Command { Event = @event });
         return NoContent();
     }
+
+    [HttpDelete("{id}")]
+    [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
+
+    public async Task<ActionResult> DeleteEvent(string id)
+    {
+        await Mediator.Send(new DeleteEvent.Command { Id = id });
+        return Ok();
+    }
 }
 
