@@ -1,7 +1,8 @@
 import {Fragment, useEffect, useState} from 'react'
-import { ListItemText, Typography } from '@mui/material';
+import { CssBaseline, ListItemText } from '@mui/material';
 import { List, ListItem } from '@mui/material';
 import axios from 'axios';
+import NavBar from './NavBar';
 
 function App() {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -17,7 +18,8 @@ function App() {
 
   return (
     <Fragment>
-        <Typography variant="h3"> EventsHub </Typography>
+        <CssBaseline />
+        <NavBar />
         <List>
           {activities.map((activity: Activity) => (
             <ListItem key={activity.id}>
