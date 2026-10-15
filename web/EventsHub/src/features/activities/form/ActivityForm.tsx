@@ -1,5 +1,4 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
-import type { FormEvent } from "react";
 
 type Props = {
     activity?: Activity;
@@ -7,7 +6,7 @@ type Props = {
 }
 
 export default function ActivityForm({ activity, closeForm }: Props) {
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         
         const formData = new FormData(event.currentTarget);
@@ -15,6 +14,8 @@ export default function ActivityForm({ activity, closeForm }: Props) {
         formData.forEach((value, key) => {
             data[key] = value;
         });
+        
+        console.log(data);
     }
 
     return (
