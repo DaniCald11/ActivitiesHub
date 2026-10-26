@@ -10,4 +10,7 @@ export default defineConfig({
     open: true,
   },
   plugins: [react(), babel({ presets: [reactCompilerPreset()] }), mkcert()],
+  resolve: {
+    dedupe: ['react', 'react-dom'],
+  },
 })
