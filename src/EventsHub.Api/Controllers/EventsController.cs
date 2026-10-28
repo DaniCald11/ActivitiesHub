@@ -1,7 +1,7 @@
+using EventsHub.Application.Events.Commands;
+using EventsHub.Application.Events.Queries;
 using EventsHub.Domain;
 using Microsoft.AspNetCore.Mvc;
-using EventsHub.Application.Events.Queries;
-using EventsHub.Application.Events.Commands;
 
 namespace EventsHub.Api.Controllers;
 
@@ -50,7 +50,7 @@ public class EventsController : EventsHubBaseController
     [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
 
-    public async Task<ActionResult> DeleteEvent(string id)
+    public async Task<ActionResult> DeleteEventAsync(string id)
     {
         await Mediator.Send(new DeleteEvent.Command { Id = id });
         return Ok();
