@@ -3,6 +3,7 @@ import agent from '../api/agent'
 
 export const useActivities = () => {
   const queryClient = useQueryClient()
+
   const { data: activities, isPending } = useQuery({
     queryKey: ['activities'],
     queryFn: async () => {
@@ -22,5 +23,17 @@ export const useActivities = () => {
     },
   })
 
-  return { activities, isPending, updateActivity }
+  // Nueva mutación para crear actividades
+  const createActivity = useMutation({
+    mutationFn: async (activity: Activity) => {
+      await agent.post('/events', activity)
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['activities'],
+      })
+    },
+  })
+
+  return { activities, isPending, updateActivity, createActivity }
 }

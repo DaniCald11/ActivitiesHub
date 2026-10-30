@@ -1,28 +1,34 @@
 import { Box, Button, Paper, TextField, Typography } from '@mui/material'
 import { useActivities } from '../../../lib/hooks/useActivities'
+
 type Props = {
   activity?: Activity
   closeForm: () => void
-  submitForm: (activity: Activity) => void
 }
 
 export default function ActivityForm({ activity, closeForm }: Props) {
-  const { updateActivity } = useActivities()
+  const { updateActivity, createActivity } = useActivities()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const formData = new FormData(event.currentTarget)
     const data: { [key: string]: FormDataEntryValue } = {}
+
     formData.forEach((value, key) => {
       data[key] = value
     })
 
     if (activity) {
+      // Si existe una actividad, conservamos su ID y la actualizamos
       data.id = activity.id
       await updateActivity.mutateAsync(data as unknown as Activity)
-      closeForm()
+    } else {
+      // Si no existe, creamos una actividad nueva
+      await createActivity.mutateAsync(data as unknown as Activity)
     }
+
+    closeForm()
   }
 
   return (
@@ -30,12 +36,14 @@ export default function ActivityForm({ activity, closeForm }: Props) {
       <Typography variant="h5" gutterBottom color="primary">
         Create activity
       </Typography>
+
       <Box
         component="form"
         onSubmit={handleSubmit}
         sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}
       >
         <TextField name="title" label="Title" defaultValue={activity?.title} />
+
         <TextField
           name="description"
           label="Description"
@@ -43,11 +51,13 @@ export default function ActivityForm({ activity, closeForm }: Props) {
           multiline
           rows={3}
         />
+
         <TextField
           name="category"
           label="Category"
           defaultValue={activity?.category}
         />
+
         <TextField
           name="date"
           label="Date"
@@ -58,17 +68,21 @@ export default function ActivityForm({ activity, closeForm }: Props) {
               : new Date().toISOString().split('T')[0]
           }
         />
+
         <TextField name="city" label="City" defaultValue={activity?.city} />
+
         <TextField name="venue" label="Venue" defaultValue={activity?.venue} />
+
         <Box sx={{ display: 'flex', justifyContent: 'end', gap: 3 }}>
           <Button onClick={closeForm} color="inherit">
             Cancel
           </Button>
+
           <Button
             type="submit"
             color="success"
             variant="contained"
-            loading={updateActivity.isPending}
+            loading={updateActivity.isPending || createActivity.isPending}
           >
             Submit
           </Button>
